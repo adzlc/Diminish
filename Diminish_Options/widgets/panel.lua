@@ -54,7 +54,9 @@ local function CreateChildPanel(self, name, callback)
         panel.name = name
         panel.parent = self.name
         panel.frames = {}
-        InterfaceOptions_AddCategory(panel)
+        category, layout = Settings.RegisterCanvasLayoutCategory(panel, panel.name, panel.name);
+        category.ID = panel.name
+        Settings.RegisterAddOnCategory(category);
         self.lastCreatedChild = panel
 
         callback(panel)
@@ -73,8 +75,9 @@ function Widgets:CreateMainPanel(name)
     panel.frames = {}
     panel.CreateChildPanel = CreateChildPanel
     panel:Hide()
-
-    InterfaceOptions_AddCategory(panel)
+    category, layout = Settings.RegisterCanvasLayoutCategory(panel, panel.name, panel.name);
+    category.ID = panel.name
+    Settings.RegisterAddOnCategory(category);
     panel:RegisterEvent("PLAYER_LOGIN") -- panel:SetScript("OnShow", OnShow)
     panel:SetScript("OnEvent", OnShow)
     return panel
