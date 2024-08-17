@@ -343,9 +343,9 @@ do
         end
 
         if isNew then
-            --@debug@
+            --[==[@debug@
             NS.Debug("Created new frame for %s:%s", unitID, category)
-            --@end-debug@
+            --@end-debug@]==]
 
             iconCount = iconCount + 1
             frame:SetFrameStrata("HIGH")
@@ -537,9 +537,9 @@ function Icons:ReleaseNameplate(unitID)
         for category, frame in pairs(frames[unitID]) do
             Icons:ReleaseFrame(frame, unitID, nil, category)
         end
-        --@debug@
+        --[==[@debug@
         NS.Debug("Released nameplate %s", unitID)
-        --@end-debug@
+        --@end-debug@]==]
     end
 end
 
@@ -582,7 +582,6 @@ function Icons:ReleaseFrame(frame, unitID, timer, category)
 end
 
 do
-    local GetSpellTexture = _G.GetSpellTexture
     local CATEGORY_TAUNT = NS.CATEGORIES.taunt
     local indicatorColors = NS.DR_STATES_COLORS
     local DR_TIME = NS.DR_TIME
@@ -623,7 +622,7 @@ do
             return frame.icon:SetTexture(NS.db.categoryTextures[timer.category])
         end
 
-        frame.icon:SetTexture(GetSpellTexture(timer.spellID))
+        frame.icon:SetTexture(C_Spell.GetSpellTexture(timer.spellID))
     end
 
     function Icons:StartCooldown(timer, unitID, onAuraEnd)
